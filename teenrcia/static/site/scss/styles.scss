@@ -1,4 +1,12 @@
-header .banner {
+$color-main: DeepSkyBlue;
+
+header, footer {
+    color: Beige;
+    background: $color-main;
+}
+
+.banner {
     font-family: 'Permanent Marker', cursive;
 }
+
 

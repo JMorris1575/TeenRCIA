@@ -1,2 +1,6 @@
-header .banner {
+header, footer {
+  color: Beige;
+  background: DeepSkyBlue; }
+
+.banner {
   font-family: 'Permanent Marker', cursive; }
