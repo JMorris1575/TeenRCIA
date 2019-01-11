@@ -51,6 +51,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'user.apps.UserConfig',
+    'activity.apps.ActivityConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,4 +129,4 @@ USE_TZ = True
 
 LOGIN_URL = reverse_lazy('user:login')
 LOGOUT_URL = reverse_lazy('user:logout')
-LOGIN_REDIRECT_URL = reverse_lazy('<named urlpattern to go to after successful login>')
+LOGIN_REDIRECT_URL = reverse_lazy('activity:welcome')
