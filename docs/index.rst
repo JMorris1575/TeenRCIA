@@ -11,7 +11,7 @@ Welcome to the documentation for RCIA for Teens!
    :caption: Contents:
 
    design.rst
-
+   building.rst
 
 
 

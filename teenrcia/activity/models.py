@@ -43,7 +43,7 @@ class Item(models.Model):
 
     class Meta:
         ordering = ['index']
-        unique_togther = ('section', 'index')
+        unique_together = ('section', 'index')
 
 
 class Post(models.Model):
