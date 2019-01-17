@@ -6,13 +6,13 @@ As I envision the process at the moment I will proceed by:
 
 #. Building the Welcome Page
 #. Building the Activity Page
-#. Build the Section Page with it's discussion area
-#. Build the Item input page.
-#. Build the Item edit page.
-#. Build the Item delete page.
-#. Build the Comment page.
-#. Build the Comment edit page.
-#. Build the Comment delete page.
+#. Building the Section Page with it's discussion area
+#. Building the Item input page.
+#. Building the Item edit page.
+#. Building the Item delete page.
+#. Building the Comment page.
+#. Building the Comment edit page.
+#. Building the Comment delete page.
 #. Consider adding a Response model to allow people to respond to individual comments. Build all three pages for it.
 
 Building the Welcome Page
@@ -28,7 +28,17 @@ has viewed the page. Perhaps I could start by just marking an activity when it h
 than the current user's last comment or response and less than x number of days old. What should x be? Maybe 2? Maybe 5?
 That may become more clear after we start using the site.
 
+Detailed Plan
+-------------
 
+Here are the steps as I imagine them:
+
+#. The urlpattern and WelcomeView are already in place.
+#. Compose and display the explanatory paragraph at the top of a bootstrap card.
+#. Display the current list of acivities under a line. Each should display it's index number and title.
+#. Modify it so that it only displays activities on or after their publish date.
+#. Modify it so that it does not display activities marked with archive = True.
+#. Provide a means, either button or link, to get into an actual activity.
 
 Building the Activity Page
 ==========================
@@ -43,6 +53,23 @@ available sections should be active, either by having a button or by being an ac
 
 A button or link at the bottom could return the user to the Welcome Page. Perhaps I could implement Previous and Next
 buttons to go to the previous or next available activity.
+
+Detailed Plan
+-------------
+
+Here are the steps as I imagine them:
+
+#. Set the urlpattern to get to the activity summary page
+#. Stub in the Activity SummaryView.
+#. Stub in activity_summary.html
+#. Flesh out the view.
+#. Flesh out the html.
+
+Comments
+--------
+
+I will have to return to this later. All I have done now is the listing of the sections. I also want to mark sections
+with new material but that will require actually having a means to enter comments and that won't be done until later.
 
 Building the Section Page
 =========================
@@ -59,6 +86,25 @@ you find out whether it might be useful.
 
 Each discussion point (Item) added by an administrator will be printed in bold with the comments to that discussion
 point indented underneath.
+
+Detailed Plan
+-------------
+
+Here are the steps as I imagine them:
+
+#. Set the urlpattern to get to the section page
+#. Stub in the Activity SectionView.
+#. Stub in activity_section.html
+#. Flesh out the view to the point of displaying the html.
+#. Flesh out the html to the point of displaying the instructions and, if present, the link.
+#. Create a discussion area in the html.
+#. Add the ability for the administrator(s) to add discussion points (items).
+#. Add the ability for the administrator(s) to edit items they have added.
+#. Add the ability for the administrator(s) to delete items they have added if no comments have yet been made.
+#. Add the ability for the users to add comments to the items.
+#. Add the ability for the users to edit their comments.
+#. Add the ability for the users to delete their comments.
+
 
 Building the Item Input Page
 ============================

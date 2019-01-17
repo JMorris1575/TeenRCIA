@@ -6,7 +6,7 @@ header, footer {
 }
 
 header a {
-    color: Beige;
+    color: Beige !important;
     opacity: 0.9;
     text-decoration: none;
 }
@@ -43,6 +43,18 @@ header .nav-link {
 .reverse-color-scheme {
     color: $color-main;
     background: Beige;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    color: Beige;
 }
 
 

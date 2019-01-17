@@ -7,7 +7,6 @@ class Activity(models.Model):
     title = models.CharField(max_length=100)
     overview = models.CharField(max_length=512, blank=True)
     publish_date = models.DateField(null=True)
-    open = models.BooleanField(default=True)
     archive = models.BooleanField(default=False)
 
     def __str__(self):
@@ -21,12 +20,19 @@ class Activity(models.Model):
 class Section(models.Model):
     index = models.SmallIntegerField()
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50, default='')
     instructions = models.CharField(max_length=512)
     link_name = models.CharField(max_length=50, blank=True)
     link = models.URLField(default="", blank=True)
+    visible = models.BooleanField(default=False)
 
     def __str__(self):
         return self.activity.title + " Section " + str(self.index)
+
+    def save(self, *args, **kwargs):    # set the default value of visible to true for the first section
+        if self.index == 1:
+            self.visible = True
+        super(Section, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['index']
@@ -70,4 +76,13 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['comment_date_time']
+
+
+class ImageQuote(models.Model):
+    title = models.CharField(max_length=50)
+    image_filename = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
+
 

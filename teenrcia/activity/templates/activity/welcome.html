@@ -2,5 +2,30 @@
 {% load static %}
 
 {% block content %}
-    This will be the welcome.html page
+    <div class="card mt-3">
+        <div class="card-header reverse-color-scheme">
+            <h3>Activity List</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Click on an item below to interact with it and with the rest of the group. After
+            an activity has been dormant for a while it will no longer appear here but on the archive page.</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-7">
+                    <ul class="card-text">
+                        {% for activity in activities %}
+                            <a href="{% url 'activity:summary' activity.index %}">
+                                <li class="row h4 py-3">
+                                    Unit {{ activity.index }}: {{ activity.title }}
+                                </li>
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-5">
+                    <img class="img-fluid" src="{% static image %}">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

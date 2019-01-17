@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <!-- St. Basil Icon Logo -->
-                <div class="col-md-2 d-none d-md-inline">
+                <div class="col-md-1 d-none d-md-inline">
                     <a href="{% url 'activity:welcome' %}" class="brand">
                         <img src="{% static 'images/StBasilIcon.png' %}" class="img-fluid">
                     </a>
@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col">
                             <a href="{% url 'activity:welcome' %}">
-                                <h1 class="banner d-inline">Saint Basil Teen RCIA</h1>
+                                <h1 class="banner d-inline">Saint Basil Youth RCIA</h1>
                             </a>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                     <div class="navbar-nav ml-auto nav-fill">
                                         {% if user.is_staff %}
                                             <a href="#"
-                                               class="nav-item nav-link btn btn-outline-primary btn-lg text-right pb-3">
+                                               class="nav-item nav-link text-right pb-3">
                                                 E-mail
                                             </a>
                                         {% endif %}

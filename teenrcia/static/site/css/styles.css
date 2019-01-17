@@ -3,7 +3,7 @@ header, footer {
   background: #0080b0; }
 
 header a {
-  color: Beige;
+  color: Beige !important;
   opacity: 0.9;
   text-decoration: none; }
 
@@ -33,3 +33,12 @@ header .nav-link {
 .reverse-color-scheme {
   color: #0080b0;
   background: Beige; }
+
+.navbar-toggler {
+  border: none; }
+
+.navbar-toggler:focus {
+  outline: none; }
+
+.navbar-toggler-icon {
+  color: Beige; }
