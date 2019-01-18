@@ -43,36 +43,27 @@ class Item(models.Model):
     index = models.SmallIntegerField()
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     text = models.CharField(max_length=512)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.section) + " Item " + str(self.index)
+
+    def get_comments(self):
+        return self.comment_set.all()
 
     class Meta:
         ordering = ['index']
         unique_together = ('section', 'index')
 
 
-class Post(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    text = models.TextField()
-    post_date_time = models.DateTimeField()
-
-    def __str__(self):
-        return str(self.item) + " post by " + self.user.first_name
-
-    class Meta:
-        ordering = ['post_date_time']
-
-
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     text = models.TextField()
     comment_date_time = models.DateTimeField()
 
     def __str__(self):
-        return "Comment by " + self.user.first_name + " on " + str(self.post)
+        return "Comment by " + self.user.first_name + " on " + str(self.item)
 
     class Meta:
         ordering = ['comment_date_time']

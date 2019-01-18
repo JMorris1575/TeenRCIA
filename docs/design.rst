@@ -98,9 +98,9 @@ Overall URL Scheme
 +---------------------------------+----------------------------------------------------------------------------------+
 | ``activity/<a>/<n>/``           | Section page for section n of activity a                                         |
 +---------------------------------+----------------------------------------------------------------------------------+
-| ``activity/create/<a>/<n>/<t>`` | Page to create post or comment (indciated by t) for activity a and section n     |
+| ``activity/create/<t>/<a>/<n>`` | Page to create item or comment (indicated by t) for activity a and section n     |
 +---------------------------------+----------------------------------------------------------------------------------+
-| ``activity/edit/<t>/<pk>/``     | Edit page for text for either post or comment <pk> indicated by <t>              |
+| ``activity/edit/<t>/<pk>/``     | Edit page for text for either item or comment <pk> indicated by <t>              |
 +---------------------------------+----------------------------------------------------------------------------------+
-| ``activity/delete/<t>/<pk>/``   | Deletion confirmation page for either post or comment <pk> indicated by <t>      |
+| ``activity/delete/<t>/<pk>/``   | Deletion confirmation page for either item or comment <pk> indicated by <t>      |
 +---------------------------------+----------------------------------------------------------------------------------+

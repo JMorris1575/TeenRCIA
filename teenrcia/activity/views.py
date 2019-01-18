@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 import datetime
 
 import utilities
 
-from .models import Activity, Section
+from .models import Activity, Section, Item
 
 class WelcomeView(View):
     template_name = 'activity/welcome.html'
@@ -27,4 +27,31 @@ class SummaryView(View):
 
 
 class SectionView(View):
-    pass
+    template_name = 'activity/section.html'
+
+    def get(self, request, activity_index, section_index):
+        activity = Activity.objects.get(index=activity_index)
+        section = Section.objects.get(activity=activity, index=section_index)
+        items = Item.objects.filter(section=section)
+        context = {'activity': activity, 'section': section, 'items': items, 'user': request.user}
+        return render(request, self.template_name, context)
+
+
+class ItemCreateView(View):
+    template_name = 'activity/item_create.html'
+
+    def get(self, request, activity_index, section_index):
+        activity = Activity.objects.get(index=activity_index)
+        section = Section.objects.get(activity=activity, index=section_index)
+        items = Item.objects.filter(section=section)
+        context = {'activity':activity, 'section':section, 'items': items}
+        return render(request, self.template_name, context)
+
+    def post(self, request, activity_index, section_index):
+        activity = Activity.objects.get(index=activity_index)
+        section = Section.objects.get(activity=activity, index=section_index)
+        items = Item.objects.filter(section=section)
+        index = len(items) + 1
+        new_item = Item(index=index, section=section, text=request.POST['item_text'], author=request.user)
+        new_item.save()
+        return redirect('activity:section', activity_index, section_index)

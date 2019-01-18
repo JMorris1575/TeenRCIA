@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Activity, Section, Item, Post, Comment, ImageQuote
+from .models import Activity, Section, Item, Comment, ImageQuote
 
 
 class SectionInline(admin.StackedInline):
@@ -19,7 +19,6 @@ class ActivityAdmin(admin.ModelAdmin):
 
 admin.site.register(Activity, ActivityAdmin)
 admin.site.register(Item)
-admin.site.register(Post)
 admin.site.register(Comment)
 admin.site.register(ImageQuote)
 

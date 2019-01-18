@@ -94,7 +94,7 @@ Here are the steps as I imagine them:
 
 #. Set the urlpattern to get to the section page
 #. Stub in the Activity SectionView.
-#. Stub in activity_section.html
+#. Stub in section.html
 #. Flesh out the view to the point of displaying the html.
 #. Flesh out the html to the point of displaying the instructions and, if present, the link.
 #. Create a discussion area in the html.
@@ -113,6 +113,20 @@ Overview
 --------
 
 This should be a fairly simple page allowing the administrator to compose/edit a discussion point.
+
+Detailed Plan
+-------------
+
+Whether it is really simple or not remains to be seen. I'm already re-thinking the urlpattern I had in mind for this.
+Perhaps it should be something like ``activity/<a>/<s>/item/`` where <a> is the activity index and <s> is the section
+index. Let's try that in the following steps.
+
+#. Set the urlpattern and stub in the Activity ItemCreateView.
+#. Stub in item_create.html.
+#. Flesh out the get method of the view.
+#. Flesh out the html to allow for actual input.
+#. Flesh out the post method of the view.
+#. Revisit section.html to adjust how the items are displayed.
 
 Building the Item Edit Page
 ===========================
