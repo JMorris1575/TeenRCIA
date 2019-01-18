@@ -5,7 +5,7 @@ import datetime
 
 import utilities
 
-from .models import Activity, Section, Item
+from .models import Activity, Section, Item, Comment
 
 class WelcomeView(View):
     template_name = 'activity/welcome.html'
@@ -55,3 +55,21 @@ class ItemCreateView(View):
         new_item = Item(index=index, section=section, text=request.POST['item_text'], author=request.user)
         new_item.save()
         return redirect('activity:section', activity_index, section_index)
+
+
+class CommentCreateView(View):
+    template_name = 'activity/comment_create.html'
+
+    def get(self, request, activity_index, item_pk):
+        activity = Activity.objects.get(index=activity_index)
+        item = Item.objects.get(pk=item_pk)
+        comments = Comment.objects.filter(item=item)
+        context = {'activity': activity, 'item': item, 'comments': comments}
+        return render(request, self.template_name, context)
+
+    def post(self, request, activity_index, item_pk):
+        activity = Activity.objects.get(index=activity_index)
+        item = Item.objects.get(pk=item_pk)
+        new_comment = Comment(user=request.user, item=item, text=request.POST['comment_text'])
+        new_comment.save()
+        return redirect('activity:section', activity_index, item.section.index)

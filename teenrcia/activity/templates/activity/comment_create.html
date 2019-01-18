@@ -1,0 +1,24 @@
+{% extends parent_template|default:"base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="card mt-3">
+        <div class="card-header reverse-color-scheme text-center">
+            <h4>Add Comment to "{{ activity }} - {{ section.title }}"</h4>
+        </div>
+        <h5>{{ item.text }}</h5>
+        {% for comment in comments %}
+            <p>{{ user.first_name }} says: {{ comment.text }}</p>
+        {% endfor %}
+        <form action="{% url 'activity:comment_create' activity.index item.pk %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="item">Enter your comment below:</label>
+                <textarea class="form-control" id="item" name="comment_text" rows="3"></textarea>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn-light btn-lg text-center" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

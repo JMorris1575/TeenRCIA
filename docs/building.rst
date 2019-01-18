@@ -155,6 +155,19 @@ Overview
 This should be a fairly simple page allowing a user to compose/edit their comments for a particular discussion point. It
 would be really nice if this could be in a pop-up window so they could still see the Item and/or the other comments.
 
+Detailed Plan
+-------------
+
+I already added some "Add Comment" buttons to the end of each item section on the section page. Now I need to add a way
+to actually add those comments. This page should probably end up just being a clone of item_create.html but, since the
+model for a comment is different, the views will have to be different too. Here are the steps:
+
+#. Set the urlpattern and stub in the Activity CommentCreateView.
+#. Flesh out the get method of the view.
+#. Copy comment_create.html from item_create.html
+#. Flesh out the post method of the view.
+#. Revisit section.html to adjust how the comments are displayed.
+
 Building the Comment Edit Page
 ==============================
 

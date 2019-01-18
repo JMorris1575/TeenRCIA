@@ -14,7 +14,13 @@
             <hr>
             <ul>
                 {% for item in items %}
-                    <li>{{ item.text }}</li>
+                    <li class="h5 text-main">{{ item.text }}</li>
+                    {% for comment in item.get_comments %}
+                        <p>{{ user.first_name }} says: {{ comment.text }}</p>
+                    {% endfor %}
+                    <a class="btn btn-light" href="{% url 'activity:comment_create' activity.index item.pk %}">
+                        Add Comment
+                    </a>
                 {% endfor %}
             </ul>
             {% if user.is_staff %}
