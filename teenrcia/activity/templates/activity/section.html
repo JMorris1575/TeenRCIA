@@ -9,16 +9,29 @@
         <div class="card-body">
             <h5 class="card-title">{{ section.instructions }}</h5>
             {% if section.link_name %}
-                <a class="card-title" href="{{ section.link }}">{{ section.link_name }}</a>
+                <a class="card-title text-main h5" href="{{ section.link }}">Click Here: {{ section.link_name }}</a>
             {% endif %}
             <hr>
             <ul>
                 {% for item in items %}
-                    <li class="h5 text-main">{{ item.text }}</li>
+                    {% if item.author == user %}
+                        <li class="h5 text-main">
+                            {{ item.text }}
+                            <a href="{% url 'activity:item_edit' activity.index item.pk %}"> (Edit...)</a>
+                        </li>
+                    {% else %}
+                        <li class="h5 text-main">{{ item.text }}</li>
+                    {% endif %}
                     {% for comment in item.get_comments %}
-                        <p>{{ user.first_name }} says: {{ comment.text }}</p>
+                        {% if comment.user == user %}
+                            <p>{{ comment.user.first_name }}: {{ comment.text }}
+                                <a href="#"> (Edit...)</a>
+                            </p>
+                        {% else %}
+                            <p>{{ comment.user.first_name }} says: {{ comment.text }}</p>
+                        {% endif %}
                     {% endfor %}
-                    <a class="btn btn-light" href="{% url 'activity:comment_create' activity.index item.pk %}">
+                    <a class="btn btn-light mb-3" href="{% url 'activity:comment_create' activity.index item.pk %}">
                         Add Comment
                     </a>
                 {% endfor %}

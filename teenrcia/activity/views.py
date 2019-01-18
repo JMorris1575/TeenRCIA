@@ -57,6 +57,27 @@ class ItemCreateView(View):
         return redirect('activity:section', activity_index, section_index)
 
 
+class ItemEditView(View):
+    template_name = 'activity/item_edit.html'
+
+    def get(self, request, activity_index, item_pk):
+        activity = Activity.objects.get(index=activity_index)
+        item = Item.objects.get(pk=item_pk)
+        comments = Comment.objects.filter(item=item)
+        error_msg = ''
+        if len(comments) > 0:
+            error_msg = 'People have made comments on this item. You may want to be careful about editing it.'
+        context = {'activity': activity, 'item': item, 'comments': comments, 'error': error_msg}
+        return render(request, self.template_name, context)
+
+    def post(self, request, activity_index, item_pk):
+        activity = Activity.objects.get(index=activity_index)
+        item = Item.objects.get(pk=item_pk)
+        item.text = request.POST['item_text']
+        item.save()
+        return redirect('activity:section', activity_index, item.section.index)
+
+
 class CommentCreateView(View):
     template_name = 'activity/comment_create.html'
 

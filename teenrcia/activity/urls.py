@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 
-from .views import (WelcomeView, SummaryView, SectionView, ItemCreateView,
+from .views import (WelcomeView, SummaryView, SectionView, ItemCreateView, ItemEditView,
                     CommentCreateView)
 
 app_name = 'activity'
@@ -12,6 +12,7 @@ urlpatterns = [
     path('<int:activity_index>/<int:section_index>/', login_required(SectionView.as_view()), name='section'),
     path('<int:activity_index>/<int:section_index>/create_item/',
          login_required(ItemCreateView.as_view()), name='item_create'),
+    path('<int:activity_index>/<int:item_pk>/edit_item', login_required(ItemEditView.as_view()), name='item_edit'),
     path('<int:activity_index>/<int:item_pk>/comment/',
          login_required(CommentCreateView.as_view()), name='comment_create'),
 ]

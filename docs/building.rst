@@ -134,8 +134,9 @@ Building the Item Edit Page
 Overview
 --------
 
-This will actually be the same page as the Item Input page, the only difference being the URL being used to access it
-and that the previously composed Item should be visible in the edit box. There should also be a Delete button here if
+There will be little difference between this and the Item Input page. You can probably clone create_item.html to give
+you a starting point then follow what you did in Christmas2018 on the comment_edit.html page. The URL used to access it
+will be ``activity/<a>/and that the previously composed Item should be visible in the edit box. There should also be a Delete button here if
 the administrator wants to delete the Item.
 
 Building the Item Delete Page
