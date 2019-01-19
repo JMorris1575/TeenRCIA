@@ -28,7 +28,7 @@
                                 <a href="#"> (Edit...)</a>
                             </p>
                         {% else %}
-                            <p>{{ comment.user.first_name }} says: {{ comment.text }}</p>
+                            <p>{{ comment.user.first_name }}: {{ comment.text }}</p>
                         {% endif %}
                     {% endfor %}
                     <a class="btn btn-light mb-3" href="{% url 'activity:comment_create' activity.index item.pk %}">

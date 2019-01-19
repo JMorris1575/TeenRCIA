@@ -78,6 +78,31 @@ class ItemEditView(View):
         return redirect('activity:section', activity_index, item.section.index)
 
 
+class ItemDeleteView(View):
+    template_name = 'activity/item_delete.html'
+
+    def get(self, request, activity_index, item_pk):
+        activity = Activity.objects.get(index=activity_index)
+        item = Item.objects.get(pk=item_pk)
+        comments = Comment.objects.filter(item=item)
+        error_msg = ''
+        if len(comments) > 0:
+            error_msg = 'This item already includes comments. Be absolutely sure you want to delete it!'
+        context = {'activity': activity, 'item': item, 'comments': comments, 'error': error_msg}
+        return render(request, self.template_name, context)
+
+    def post(self, request, activity_index, item_pk):
+        activity = Activity.objects.get(index=activity_index)
+        item = Item.objects.get(pk=item_pk)
+        comments = Comment.objects.filter(item=item)
+        if len(comments) > 0:
+            for comment in comments:
+                comment.delete()
+        item_section_index = item.section.index     # better get it before deleting the item
+        item.delete()
+        return redirect('activity:section', activity.index, item_section_index)
+
+
 class CommentCreateView(View):
     template_name = 'activity/comment_create.html'
 

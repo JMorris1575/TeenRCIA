@@ -145,7 +145,17 @@ Building the Item Delete Page
 Overview
 --------
 
-This page will only confirm that the administrator wants to delete the Item. If not, they go back to the Item Edit page.
+This page will only confirm whether the administrator wants to delete the Item. If not, they go back to the Item Edit
+page.
+
+Detailed Plans
+--------------
+
+This should be a fairly close copy of what I did for deleting comments in Christmas2018. Here is a quick list of steps:
+
+#. Update the urlpatterns to include ``activity/<a>/<i>/delete_item/`` and build the get method of ItemDeleteView.
+#. Build the ``item_delete.html`` and test it out.
+#. Build the post method of the ItemDeleteView.
 
 Building the Comment Input Page
 ===============================
