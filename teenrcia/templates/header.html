@@ -43,7 +43,7 @@
                                 <div class="collapse navbar-collapse" id="navbarCollapse">
                                     <div class="navbar-nav ml-auto nav-fill">
                                         {% if user.is_staff %}
-                                            <a href="#"
+                                            <a href="{% url 'mail:send-mail' %}"
                                                class="nav-item nav-link text-right pb-3">
                                                 E-mail
                                             </a>

@@ -21,5 +21,6 @@ urlpatterns = [
     path('', RedirectView.as_view(url='user/login/')),
     path('user/', include('user.urls')),
     path('activity/', include('activity.urls')),
+    path('mail/', include('mail.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -243,6 +243,10 @@ Detailed Plans
 #. Do a python manage.py startapp mail.
 #. Copy the templates folder, urls.py and views.py from Chrismas2018.
 #. Add the mail app to INSTALLED_APPS.
-#. Add is_minor to utilities.py
-#. Add the mail app to config.urls.py
-#.
+#. Add is_minor to utilities.py.
+#. Add the mail app to config.urls.py.
+#. Carefully go over the html page.
+#. Carefully go over the views.
+#. Add e-mail link for administrator or superuser to header.html.
+#. Test basic delivery of e-mails.
+#. Test proper delivery of e-mails to minors.
