@@ -114,8 +114,43 @@ class CommentCreateView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, activity_index, item_pk):
-        activity = Activity.objects.get(index=activity_index)
         item = Item.objects.get(pk=item_pk)
         new_comment = Comment(user=request.user, item=item, text=request.POST['comment_text'])
         new_comment.save()
         return redirect('activity:section', activity_index, item.section.index)
+
+
+class CommentEditView(View):
+    template_name = 'activity/comment_edit.html'
+
+    def get(self, request, activity_index, comment_pk):
+        activity = Activity.objects.get(index=activity_index)
+        comment = Comment.objects.get(pk=comment_pk)
+        item = comment.item
+        context = {'activity': activity, 'edit_comment': comment, 'item': item}
+        return render(request, self.template_name, context)
+
+    def post(self, request, activity_index, comment_pk):
+        comment = Comment.objects.get(pk=comment_pk)
+        comment.text = request.POST['comment_text']
+        comment.save()
+        return redirect('activity:section', activity_index, comment.item.section.index)
+
+
+class CommentDeleteView(View):
+    template_name = 'activity/comment_delete.html'
+
+    def get(self, request, activity_index, comment_pk):
+        activity = Activity.objects.get(index=activity_index)
+        comment = Comment.objects.get(pk=comment_pk)
+        item = comment.item
+        context = {'activity': activity, 'delete_comment': comment, 'item': item}
+        return render(request, self.template_name, context)
+
+    def post(self, request, activity_index, comment_pk):
+        comment = Comment.objects.get(pk=comment_pk)
+        item = comment.item     # get the item this comment belongs to before deleting the comment
+        comment.delete()
+        return redirect('activity:section', activity_index, item.section.index)
+
+

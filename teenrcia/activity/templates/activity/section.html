@@ -24,11 +24,12 @@
                     {% endif %}
                     {% for comment in item.get_comments %}
                         {% if comment.user == user %}
-                            <p>{{ comment.user.first_name }}: {{ comment.text }}
-                                <a href="#"> (Edit...)</a>
+                            <p class="text-comment">{{ comment.user.first_name }}: {{ comment.text }}
+                                <a class="text-primary"
+                                   href="{% url 'activity:comment_edit' activity.index comment.pk %}"> (Edit...)</a>
                             </p>
                         {% else %}
-                            <p>{{ comment.user.first_name }}: {{ comment.text }}</p>
+                            <p class="text-comment">{{ comment.user.first_name }}: {{ comment.text }}</p>
                         {% endif %}
                     {% endfor %}
                     <a class="btn btn-light mb-3" href="{% url 'activity:comment_create' activity.index item.pk %}">

@@ -136,8 +136,8 @@ Overview
 
 There will be little difference between this and the Item Input page. You can probably clone create_item.html to give
 you a starting point then follow what you did in Christmas2018 on the comment_edit.html page. The URL used to access it
-will be ``activity/<a>/and that the previously composed Item should be visible in the edit box. There should also be a Delete button here if
-the administrator wants to delete the Item.
+will be ``activity/<a>/<i>/item_edit`` and that the previously composed Item should be visible in the edit box. There
+should also be a Delete button here if the administrator wants to delete the Item.
 
 Building the Item Delete Page
 =============================
@@ -189,6 +189,19 @@ This will actually be the same page as the Comment Input page, the only differen
 and that the previously composed Comment should be visible in the edit box. There should also be a Delete button here in
 case the user wants to delete their Comment.
 
+Detailed Plan
+-------------
+
+Apparently I neglected to fill out this section for the item_edit.html page. No matter, what I did for that will
+work much the same here. In fact, I can probably clone the ``item_edit.html`` page as my starting point and have very
+few changes to make.
+
+#. Set the urlpattern and write the Activity CommentEditView get method.
+#. Copy and edit ``comment_edit.html`` from ``item_edit.html`` and make the necessary changes.
+#. Adjust the links on the ``section.html`` page.
+#. Test the appearance of the comment edit page.
+#. Write the post method of CommentEditView and test whether the comments really get edited.
+
 Building the Comment Delete Page
 ================================
 
@@ -197,9 +210,39 @@ Overview
 
 This page will only confirm that the user wants to delete their Comment. If not, they go back to the Comment Edit page.
 
+Detailed Plan
+-------------
+
+#. Set the urlpattern and write the Activity CommentDeleteView get method.
+#. Copy and edit ``comment_delete.html`` from ``item_delete.html``.
+#. Adjust the link on the ``section.html`` page.
+#. Test the appearance of the comment delete page.
+#. Write the post method of CommentDeleteView and test whether the comments really get deleted.
+
 Thoughts on a Response Model
 ============================
 
 As indicated above, it might not be worthwhile to work on this until I find out if it will really be useful or not. The
 idea is to emulate a table discussion as much as possible and at table discussions people should not get off into side
 conversations.
+
+The Mail App
+============
+
+Overview
+--------
+
+I think I can pretty much copy and paste this whole thing from Christmas2018, though I will have to make some changes to
+be sure that Sylvia gets copied whenever I send an e-mail to a minor. With exactly two minors I think I can just put a
+new function into utilities.py that checks for either Kayden or Janely's username and returns True and otherwise return
+false.
+
+Detailed Plans
+--------------
+
+#. Do a python manage.py startapp mail.
+#. Copy the templates folder, urls.py and views.py from Chrismas2018.
+#. Add the mail app to INSTALLED_APPS.
+#. Add is_minor to utilities.py
+#. Add the mail app to config.urls.py
+#.
