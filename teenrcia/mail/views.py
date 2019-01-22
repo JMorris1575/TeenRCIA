@@ -6,6 +6,7 @@ from django.utils.http import is_safe_url
 
 from config.settings.base import get_secret
 
+import utilities
 
 def convert_tags(subject, message, user):
     """
@@ -47,9 +48,14 @@ class SendMail(View):
             message_template = request.POST['message']
             for recipient in recipients:
                 member = User.objects.get(username=recipient)
+                monitor = User.objects.get(username='Larry')
+                if utilities.is_minor(member):
+                    email_list = [member.email, monitor.email]
+                else:
+                    email_list = [member.email]
                 subject, message = convert_tags(subject_template, message_template, member)
                 send_mail(subject, message,
                           'FrJim@youthRCIA.jmorris.webfactional.com',
-                          [member.email], fail_silently=False)
+                          email_list, fail_silently=False)
 
         return redirect('activity:welcome')
