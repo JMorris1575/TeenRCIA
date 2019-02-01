@@ -48,7 +48,7 @@ class SendMail(View):
             message_template = request.POST['message']
             for recipient in recipients:
                 member = User.objects.get(username=recipient)
-                monitor = User.objects.get(username='Larry')
+                monitor = User.objects.get(username='Sylvia')
                 if utilities.is_minor(member):
                     email_list = [member.email, monitor.email]
                 else:
