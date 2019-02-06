@@ -16,7 +16,7 @@
                         {% for activity in activities %}
                             <a href="{% url 'activity:summary' activity.index %}">
                                 <li class="row h4 py-3">
-                                    Unit {{ activity.index }}: {{ activity.title }}
+                                    Activity {{ activity.index }}: {{ activity.title }}
                                 </li>
                             </a>
                         {% endfor %}
