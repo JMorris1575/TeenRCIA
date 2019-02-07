@@ -53,6 +53,16 @@
             $('#year').text(new Date().getFullYear());
         </script>
 
+        <script>
+            // Try to prevent accidental double-click entries
+            $(document).ready(function() {
+                $('button.submit').attr("disabled", false);
+                $('button.submit').click(function() {
+                    $('button.submit').attr("disabled", true);
+                });
+            });
+        </script>
+
         {% block body %}
         {% endblock %}
 
